@@ -132,16 +132,8 @@ Matrix4x4 DirectionToDirection(const Vector3& from, const Vector3& to) {
 }
 
 
-/**
- * @brief Novice::ScreenPrintfを使って行列の内容を整形して表示する
- *
- * @param m 表示する行列
- * @param x 開始x座標
- * @param y 開始y座標
- * @param m_label 行列のラベル
- * @param transpose 表示時に転置するかどうか
- * @param elementColOffset 行列要素の列表示のオフセット（-1で1列左にシフト）
- */
+
+ 
 void MatrixScreenPrintf(const Matrix4x4& m, int x, int y, const char* m_label, bool transpose = false, int elementColOffset = 0) {
 	const int kColWidth = 65;
 
@@ -158,7 +150,7 @@ void MatrixScreenPrintf(const Matrix4x4& m, int x, int y, const char* m_label, b
 				value = m.m[i][j];
 			}
 
-			// 行列要素の表示位置は、指定された x に列幅 * (列インデックス + オフセット) を加える
+			
 			Novice::ScreenPrintf(
 				x + (j + elementColOffset) * kColWidth, y + (i + 1) * kRowHeight,
 				"%6.3f", value
@@ -185,10 +177,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	/// ↓計算部分 (結果の数値で直接再現)
 	///
 
-	// R0 の計算は行いません。結果の数値で直接初期化します。
-	// Vector3 frome0 = Normalize(Vector3{ 1.0f, 0.0f, 0.0f });
-	// Vector3 toe0 = Normalize(Vector3{ -1.0f, 0.0f, 0.0f });
-	// Matrix4x4 rotateMatrix0 = DirectionToDirection(frome0, toe0);
+
 
 	// rotateMatrix0 の結果を直接初期化
 	Matrix4x4 rotateMatrix0 = {
@@ -230,7 +219,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		// 1. rotateMatrix0: (0, 0)
 		MatrixScreenPrintf(rotateMatrix0, kScreenX, kScreenY, "rotateMatrix0", false);
 
-		// 2. rotateMatrix1: (8, kRowHeight * 5) - 要素を1列左にオフセットして表示
+		// 2. rotateMatrix1: (8, kRowHeight * 5) 
 		MatrixScreenPrintf(rotateMatrix1, kScreenX, kScreenY + kRowHeight * 5, "rotateMatrix1", false);
 
 		// 3. rotateMatrix2: (8, kRowHeight * 10)
